@@ -61,8 +61,19 @@ ErrorMessage,
 },
 emits: ["submit:contact", "delete:contact"],
 props: {
-contact: { type: Object, required: true }
+  contact: {
+    type: Object,
+    required: false,
+    default: () => ({
+      name: '',
+      email: '',
+      address: '',
+      phone: '',
+      favorite: false,
+    }),
+  },
 },
+
 data() {
 const contactFormSchema = yup.object().shape({
 name: yup

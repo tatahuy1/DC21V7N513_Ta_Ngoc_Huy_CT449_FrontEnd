@@ -14,6 +14,11 @@ component: ContactBook,
     component: ContactList,
 },
 {
+    path: "/contacts/add",
+    name: "contact.add",
+    component: () => import("@/views/ContactAdd.vue")
+},
+{
 path: "/contacts/:id",
 name: "contact.edit",
 component: () => import("@/views/ContactEdit.vue"),
