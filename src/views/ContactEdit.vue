@@ -39,6 +39,7 @@ hash: this.$route.hash,
 });
 }
 },
+
 async updateContact(data) {
 try {
 await ContactService.update(this.contact._id, data);

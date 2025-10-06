@@ -28,6 +28,38 @@
 
 <ErrorMessage name="phone" class="error-feedback" />
 </div>
+
+<!--PTL-->
+<div class="sex">
+  <label>Giới tính</label>
+  <div class="form-check">
+    <Field
+      name="sex"
+      type="radio"
+      value="Nam"
+      v-model="contactLocal.sex"
+      class="form-check-input"
+      id="sex-male"
+    />
+    <label for="sex-male" class="form-check-label">Nam</label>
+  </div>
+
+  <div class="form-check">
+    <Field
+      name="sex"
+      type="radio"
+      value="Nữ"
+      v-model="contactLocal.sex"
+      class="form-check-input"
+      id="sex-female"
+    />
+    <label for="sex-female" class="form-check-label">Nữ</label>
+  </div>
+
+  <ErrorMessage name="sex" class="error-feedback" />
+</div>
+<!--PTL-->
+
 <div class="form-group form-check">
 
 <input name="favorite" type="checkbox" class="form-check-input" v-model="contactLocal.favorite" />
@@ -36,6 +68,7 @@
 <strong>Liên hệ yêu thích</strong>
 </label>
 </div>
+
 <div class="form-group">
 <button class="btn btn-primary">Lưu</button>
 <button v-if="contactLocal._id" type="button" class="ml-2 btn btn-danger"
@@ -69,6 +102,9 @@ props: {
       email: '',
       address: '',
       phone: '',
+      //PTL
+      sex: '',
+      //PTL
       favorite: false,
     }),
   },
@@ -90,8 +126,10 @@ phone: yup
 .string()
 .matches(
 /((09|03|07|08|05)+([0-9]{8})\b)/g,
-"Số điện thoại không hợp lệ."
-),
+"Số điện thoại không hợp lệ."),
+//PTL
+sex: yup.string().required("Vui lòng chọn giới tính."),
+//PTL
 });
 return {
 // Chúng ta sẽ không muốn hiệu chỉnh props, nên tạo biến cục bộ
@@ -100,6 +138,18 @@ contactLocal: this.contact,
 contactFormSchema,
 };
 },
+//PTL
+mounted() {
+    if (this.contactLocal.sex) {
+      const sexVal = this.contactLocal.sex.toString().toLowerCase();
+      if (["1", "nam", "male"].includes(sexVal)) {
+        this.contactLocal.sex = "Nam";
+      } else if (["0", "nữ", "nu", "female"].includes(sexVal)) {
+        this.contactLocal.sex = "Nữ";
+      }
+    }
+  },
+//PTL
 methods: {
 submitContact() {
 this.$emit("submit:contact", this.contactLocal);
