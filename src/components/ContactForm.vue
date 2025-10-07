@@ -60,6 +60,34 @@
 </div>
 <!--PTL-->
 
+<!--PTL-->
+<div class="nation">
+  <label for="nation">Quốc gia</label>
+  <Field
+    as="select"
+    name="nation"
+    id="nation"
+    class="form-select"
+    v-model="contactLocal.nation"
+  >
+    <option value="">-- Chọn quốc gia --</option>
+    <option value="Việt Nam">Việt Nam</option>
+    <option value="Hoa Kỳ">Hoa Kỳ</option>
+    <option value="Nhật Bản">Nhật Bản</option>
+    <option value="Hàn Quốc">Hàn Quốc</option>
+    <option value="Trung Quốc">Trung Quốc</option>
+    <option value="Pháp">Pháp</option>
+    <option value="Đức">Đức</option>
+    <option value="Anh">Anh</option>
+    <option value="Úc">Úc</option>
+    <option value="Canada">Canada</option>
+  </Field>
+
+  <ErrorMessage name="nation" class="error-feedback" />
+</div>
+<!--PTL-->
+
+
 <div class="form-group form-check">
 
 <input name="favorite" type="checkbox" class="form-check-input" v-model="contactLocal.favorite" />
@@ -104,6 +132,10 @@ props: {
       phone: '',
       //PTL
       sex: '',
+      //PTL
+
+      //PTL
+      nation: '',
       //PTL
       favorite: false,
     }),
